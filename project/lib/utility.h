@@ -233,6 +233,7 @@ int presentarMenu()
     int seleccion;
     do
     {
+        setColor(0,15);
         printf("\n\n\t\t\t\tCORRECTOR\n\n");
         setColor(14,0);
         printf("\t1.");
@@ -262,12 +263,13 @@ int getoptionMenu(int maximo)
     int seleccion;
     do
     {
+        setColor(0,15);
         printf("Seleccion: ");
         setColor(0,9);
         fflush(stdin);
         scanf("%d", &seleccion);
     }
-    while (seleccion < 0 || seleccion > maximo);
+    while (seleccion <= 0 || seleccion > maximo);
     setColor(0,15);
     return seleccion;
 }
@@ -322,4 +324,23 @@ bool esvocal(char caracter)
     if (caracter == 'a' || caracter == 'e' || caracter == 'i' || caracter == 'o' || caracter == 'u')
         return true;
     return false;
+}
+
+// Elimina todos los espacios de una string
+void quitarespacios(char texto[])
+{
+    char temporal[75];
+    for (int i = 0, j = 0; texto[i] != '\0'; i++)
+    {
+        if (texto[i] != ' ')
+        {
+            temporal[j] = texto[i];
+            j++;
+        }
+        if (texto[i+1] == '\0')
+        {
+            temporal[j] = '\0';
+        }
+    }
+    strcpy(texto, temporal);
 }

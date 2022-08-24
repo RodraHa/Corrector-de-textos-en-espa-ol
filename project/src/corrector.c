@@ -51,6 +51,7 @@ int main()
         }
         else if (eleccion == 1)
         {
+            int seleccion = 0;
             printf("\n\tNombre del archivo: ");
 
             setColor(0,9);
@@ -58,8 +59,8 @@ int main()
             fgets(nombrearchivo, 70, stdin);
             printf("\n");
 
-            int seleccion;
             system("cls");
+            
             do
             {
                 setColor(11,0);
@@ -95,42 +96,46 @@ int main()
             {
                 clock_t begin = clock();
                 comparaciones = 0;
+
                 bool estado = checktext(nombrearchivo, 1);
                 if (!estado)
-                {   setColor(0,15);
+                {   
+                    setColor(0,15);
                     eleccion == 1;
                     continue;
                 }
                 clock_t end = clock();
+
                 setColor(0, 10);
                 printf("\nListo\n");
                 setColor(0, 13);
                 printf("\nEstadisticas:\n\n");
                 printf("\t- Se han realizado %li comparaciones\n", comparaciones);
+
                 time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
                 printf("\t- Se ha tardado %f segundos\n", time_spent);
 
                 eliminarlista(&listcorrect);
 
                 setColor(0,15);
-                printf("\n0. Menu principal\n1. Buscar parecidos de palabras incorrectas\n2. Salir\n\n");
-                seleccion = getoptionMenu(2);
+                printf("\n1. Menu principal\n2. Buscar parecidos de palabras incorrectas\n3. Salir\n\n");
+                seleccion = getoptionMenu(3);
 
-                if (seleccion == 2)
+                if (seleccion == 3)
                 {
                     system("cls");
                     eleccion = 3;
                     eliminarlista(&list);
                     continue;
                 }
-                else if (seleccion == 0)
+                else if (seleccion == 1)
                 {
                     system("cls");
                     eleccion = 0;
                     eliminarlista(&list);
                     continue;
                 }
-                else
+                else if (seleccion == 2)
                 {
                     int estado = mostrarparecidos();
                     if (estado == 0)
@@ -140,11 +145,11 @@ int main()
                         eleccion = 0;
                         continue;
                     }
+                    eliminarlista(&list);
+                    system("cls");
+                    eleccion = presentarMenu();
+                    continue;
                 }
-                eliminarlista(&list);
-                system("cls");
-                eleccion = presentarMenu();
-                continue;
             }
             else
             {
@@ -160,22 +165,22 @@ int main()
                 eliminarlista(&listcorrect);
 
                 printf("\nListo...\n");
-                printf("\n0. Menu principal\n1. Buscar parecidos de palabras incorrectas\n2. Salir\n\n");
-                seleccion = getoptionMenu(2);
-                if (seleccion == 2)
+                printf("\n1. Menu principal\n2. Buscar parecidos de palabras incorrectas\n3. Salir\n\n");
+                seleccion = getoptionMenu(3);
+                if (seleccion == 3)
                 {
                     system("cls");
                     eleccion = 3;
                     eliminarlista(&list);
                     continue;
                 }
-                else if (seleccion == 0)
+                else if (seleccion == 1)
                 {
                     eleccion = 0;
                     eliminarlista(&list);
                     continue;
                 }
-                else
+                else if (seleccion == 2)
                 {
                     int estado = mostrarparecidos();
                     if (estado == 0)
@@ -264,7 +269,7 @@ bool load()
     return true;
 }
 
-// Libera el espacio ocupado por los nodos creados con malloc
+// Libera el espacio ocupado por los nodos de la tabla hash creados con malloc 
 bool unload()
 {
     for (int i = 0; i < 2000; i++)
@@ -297,6 +302,8 @@ bool checktext(char *texto_a_corregir, int modo)
         }
     }
     
+    quitarespacios(texto_a_corregir);
+
     FILE *texto = fopen(texto_a_corregir, "r");
     
     if (texto == NULL)
@@ -333,12 +340,12 @@ bool checktext(char *texto_a_corregir, int modo)
             fseek(texto, -1, SEEK_CUR);
             if (estado == 0)
             {
-                fscanf(texto, "%s", palabra);
+                fscanf(texto, "%34s", palabra);
                 strcpy(anterior, palabra);
                 if (fgetc(texto) != EOF)
                 {
                     fseek(texto, -1, SEEK_CUR);
-                    fscanf(texto, "%s", posterior);
+                    fscanf(texto, "%34s", posterior);
                     if(!analyseword(palabra, true))
                         showincword(palabra, anterior, posterior, false);
                     estado = 1;
@@ -353,7 +360,7 @@ bool checktext(char *texto_a_corregir, int modo)
             if (estado == 1)
             {
                 strcpy(palabra, posterior);
-                fscanf(texto, "%s", posterior);
+                fscanf(texto, "%34s", posterior);
                 if(!analyseword(palabra, true))
                     showincword(palabra, anterior, posterior, true);
                 estado = 2;
@@ -363,7 +370,7 @@ bool checktext(char *texto_a_corregir, int modo)
             {
                 strcpy(anterior, palabra);
                 strcpy(palabra, posterior);
-                fscanf(texto, "%s", posterior);
+                fscanf(texto, "%34s", posterior);
                 if(!analyseword(palabra, true))
                     showincword(palabra, anterior, posterior, true);
             }
@@ -398,7 +405,7 @@ bool checktext(char *texto_a_corregir, int modo)
             }
             fseek(texto, -1, SEEK_CUR);
 
-            fscanf(texto, "%s", palabra);
+            fscanf(texto, "%34s", palabra);
             if (!analyseword(palabra, true))
             {
                 fputc('[', textocorregido);
@@ -415,6 +422,7 @@ bool checktext(char *texto_a_corregir, int modo)
         return true;
     }
     fclose(texto);
+    return true;
 }
 
 /*

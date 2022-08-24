@@ -1,1 +1,28 @@
-eso
+Henry Corrales
+Secuencia paralela, masiva o de nueva generación (NGS) 
+
+La secuenciación de nueva generación o Next Generation Sequencing (NGS), es un 
+
+grupo de tecnologías diseñadas para secuenciar una gran cantidad de segmentos de ADN de 
+
+forma masiva y en paralelo, en poco tiempo y a menor costo por base. Su use se dio inicialmente 
+
+para determinar variantes de nucleótido único y cada vez se ha desarrollado para otro tipo de 
+
+variantes, como inserciones, deleciones, y grandes re arreglos. (Rubio et al., 2020)
+
+Gracias a los recientes avances en las pruebas basadas en NGS, estas pruebas se plantean 
+
+como estrategias útiles para la prevención, diagnóstico, tratamiento y seguimiento de un amplio 
+
+espectro de enfermedades, incluyendo a condiciones genéticas, patologías crónicas y 
+
+enfermedades crónicas, se espera que más adelante su creciente aplicación clínica produciró.
+
+resultados beneficiosos para lograr el diagnóstico molecular. (Rubio et al., 2020)
+
+Para esto se debe entender dos conceptos fundamentales en el proceso y los resultados de 
+
+las pruebas basadas en tecnologia NGS, los cuales son: cobertura y profundidad. La cobertura se 
+
+refere al porcentaje de bases del genoma de referenci que están siendo secuenciads una

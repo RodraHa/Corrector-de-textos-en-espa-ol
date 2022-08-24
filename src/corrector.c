@@ -654,10 +654,15 @@ void buscarparecidos(char palabra[])
     char original[LENGTH];  // palabra original
 
     strcpy(original, palabra);
-    strcpy(iterador, palabra);
     
     for (int i = 0; original[i] != '\0'; i++)
     {
+        if (i == 0 && esvocal(original[i]))
+        {
+            iterador[0] = 'h';
+            strcat(iterador, original);
+            analyseword(iterador, false);
+        }
         if (esvocal(original[i]))
         {
             strcpy(iterador, original);
@@ -732,6 +737,40 @@ void buscarparecidos(char palabra[])
             iterador[i] = 'j';
             analyseword(iterador, false);
             iterador[i] = 'g';
+            analyseword(iterador, false);
+        }
+        else if (original[i] == 'm' || original[i] == 'n')
+        {
+            strcpy(iterador, original);
+            iterador[i] = 'm';
+            analyseword(iterador, false);
+            iterador[i] = 'n';
+            analyseword(iterador, false);
+        }
+        else if (original[i] == 'y')
+        {
+            for (int i = 0, b = 0; original[i] != '\0'; i++)
+            {
+                if (original[i] == 'y')
+                {
+                    iterador[b] = 'l';
+                    iterador[b+1] = 'l';
+                    b += 2;
+                    if (original[i+1] == '\0')
+                    {
+                        iterador[b] = '\0';
+                    }
+                }
+                else
+                {
+                    iterador[b] = original[i];
+                    b++;
+                    if (original[i+1] == '\0')
+                    {
+                        iterador[b] = '\0';
+                    }
+                }
+            }
             analyseword(iterador, false);
         }
     }

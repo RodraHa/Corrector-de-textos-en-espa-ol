@@ -20,7 +20,7 @@ void setColor(int Background, int Text){
     SetConsoleTextAttribute(terminal, colorTexto); 
 }
 
-// Muestra palabras con tildes y ñ
+// Muestra en consola la string con tildes y ñ
 void imprimir_espanol(char palabra[])
 {
     for (int i = 0; palabra[i] != '\0'; i++)
@@ -257,7 +257,7 @@ int presentarMenu()
     return seleccion;
 }
 
-// Permite obtener un numero entero entre 0 y "maximo"
+// Permite obtener un numero entero entre 1 y "maximo"
 int getoptionMenu(int maximo) 
 {
     int seleccion;

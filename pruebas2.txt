@@ -2,7 +2,7 @@ Secuencia paralela, masiva o de nueva generación (NGS)
 
 La secuenciación de nueva generación o Next Generation Sequencing (NGS), es un 
 
-grupo de tecnologías diseñadas para secuenciar una gran cantidad de segmentos de ADN de 
+grupo de tecnologías diseñadis para secuenciar una gran cantidad de segmentos de ADN de 
 
 forma masiva y en paralelo, en poco tiempo y a menor costo por base. Su use se dio inicialmente 
 

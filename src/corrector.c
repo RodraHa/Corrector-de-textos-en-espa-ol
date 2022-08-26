@@ -178,6 +178,7 @@ int main()
                 }
                 else if (seleccion == 1)
                 {
+                    system("cls");
                     eleccion = 0;
                     eliminarlista(&list);
                     continue;
@@ -210,7 +211,10 @@ int main()
     return 0;
 }
 
-// Asigna un identificador (entero positivo 0-1999) a "palabra"
+/*
+    Asigna un identificador (entero positivo 0-1999) a "palabra"
+    @return unsigned int
+ */
 unsigned int hash(char *palabra)
 {
     int result = 0;
@@ -229,7 +233,10 @@ unsigned int hash(char *palabra)
     return result;
 }
 
-// Carga el diccionario (diccionario.txt) en la tabla hash
+/*
+    Carga el diccionario (diccionario.txt) en la tabla hash
+    @return bool 
+*/
 bool load()
 {
     char temporal[LENGTH];
@@ -271,7 +278,10 @@ bool load()
     return true;
 }
 
-// Libera el espacio ocupado por los nodos de la tabla hash creados con malloc 
+/*
+    Libera el espacio ocupado por los nodos de la tabla hash creados con malloc 
+    @return bool 
+*/
 bool unload()
 {
     for (int i = 0; i < 2000; i++)
@@ -292,6 +302,7 @@ bool unload()
     Abre el archivo de texto, lee cada string contenida en el y la pasa a la funcion analyseword
     @param texto_acorregir Direccion del archivo de texto a evaluar
     @param modo Define si la salida se muestra en consola o se guarda en un archivo 
+    @return bool 
 */
 bool checktext(char *texto_a_corregir, int modo)
 {
@@ -432,6 +443,7 @@ bool checktext(char *texto_a_corregir, int modo)
     Si no existe devuelve "false"
     @param palabra string a evaluar
     @param agregar_a_listas Define si la palabra se guarda en las listas enlazadas
+    @return bool
 */
 bool analyseword(char palabra[], bool agregar_a_listas)
 {
@@ -628,6 +640,7 @@ bool analyseword(char palabra[], bool agregar_a_listas)
 /*
     Busca la string en la tabla hash, si la encuentra devuelve "true", de lo contrario "false"
     @param palabra String a evaluar
+    @return bool
 */
 bool checkword(char palabra[])
 {
@@ -647,6 +660,7 @@ bool checkword(char palabra[])
     Modifica los caracteres de la string y verifica si son variaciones de palabras existentes, evaluandolas con la funcion
     analyseword. Si lo son las guarda en la lista enlazada de palabras correctas y las muestra en consola
     @param palabra String a evaluar
+    @return void 
 */
 void buscarparecidos(char palabra[])
 {    
@@ -791,6 +805,7 @@ void buscarparecidos(char palabra[])
 /*
     Muestra una interfaz en consola y permite moverse a traves de la lista enlazada de palabras incorrectas.
     En dicha posicion llama a la funcion buscarparecidos y muestra los resultados en consola
+    @return int 
 */
 int mostrarparecidos()
 {

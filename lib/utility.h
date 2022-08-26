@@ -80,6 +80,7 @@ void imprimir_espanol(char palabra[])
     @param palabra  String a evaluar
     @param opcion Define la vocal acentuada a colocar
     @param posicion Posicion de la string para poner la tilde
+    @return void 
 */
 void ponertilde(char *nuevapalabra, char *palabra, int opcion, int posicion)
 {
@@ -185,6 +186,7 @@ void quitartilde(char *nuevapalabra, char *palabra, int opcion, int posicion)
 /* 
     Muestra la palabra no encontrada con su contexto
     @param repetir Define si mostrar las palabras del contexto aunque sean iguales a la palabra incorrecta
+    @return void
 */
 void showincword(char palabra[],  char anterior[], char posterior[], bool repetir)
 {
@@ -227,7 +229,10 @@ void showincword(char palabra[],  char anterior[], char posterior[], bool repeti
     printf("\n");
 }
 
-// Menu principal
+/* 
+    Prsente el Menu principal en consola y solicita una eleccion
+    @return int 
+*/
 int presentarMenu()
 {
     int seleccion;
@@ -257,7 +262,10 @@ int presentarMenu()
     return seleccion;
 }
 
-// Permite obtener un numero entero entre 1 y "maximo"
+/*
+    Permite obtener un numero entero entre 1 y "maximo"
+    @return int 
+*/
 int getoptionMenu(int maximo) 
 {
     int seleccion;
